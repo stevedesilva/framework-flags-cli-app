@@ -12,6 +12,11 @@ func main() {
 	greeter()
 }
 
+/*
+	1 - will name be populated if I pass flag as n (yes- alias populates name parm)
+	2 - for loop when does i check happen - after the first iteration n=1; n >= 1; n++ (at start of loop)
+    3 - subcommands example
+*/
 func greeter() {
 	// collect flags either by passing a var (e.g. city, or by calling c.String in the Action func)
 	var city string
