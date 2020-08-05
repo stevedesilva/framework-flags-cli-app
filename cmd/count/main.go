@@ -28,6 +28,7 @@ func counter() {
 						Name:    "stop",
 						Aliases: []string{"s"},
 						Usage:   "value to count up to",
+						Value:   10,
 					},
 				},
 				Action: func(c *cli.Context) error {
@@ -42,15 +43,30 @@ func counter() {
 					return nil
 				},
 			},
+			{
+				Name:    "down",
+				Aliases: []string{"d"},
+				Usage:   "Count down",
+				Flags: []cli.Flag{
+					&cli.IntFlag{
+						Name:    "start",
+						Aliases: []string{"s"},
+						Usage:   "Start counting down from",
+						Value:   10,
+					},
+				},
+				Action: func(c *cli.Context) error {
+					start := c.Int("start")
+					if start < 0 {
+						fmt.Println("Start cannot be negative")
+					}
+					for i := start; i >= 0; i-- {
+						fmt.Println(i)
+					}
+					return nil
+				},
+			},
 		},
-
-		//Commands: []cli.Command{
-		//	&cli.Command{
-		//		Name:  "up",
-		//		Aliases: []string{"u"},
-		//		Usage: "",
-		//	},
-		//},
 	}
 
 	if err := app.Run(os.Args); err != nil {
